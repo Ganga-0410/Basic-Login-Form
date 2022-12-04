@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My website</title>
+    <style>
+        body {
+            background-color: #fff;
+        }
+        .myform {
+            background-image:linear-gradient(to right,skyblue,rgb(103, 128, 198));
+            width: 650px;
+            height: 540px;
+            align-items: center;
+            text-align: center;
+            border: 3px solid gray;
+            padding: 45px;
+            margin: 20px;
+        }
+        input[type=text]{
+            border: 3px solid lightcoral;
+            font-size: 20px;
+            width: 65%;
+        }
+        input[type=password]{
+            border: 3px solid lightcoral;
+            font-size: 20px;
+            width: 55%;
+        }
+        input[type=date]{
+            border: 3px solid lightcoral;
+            font-size: 20px;
+            width: 50%;
+        }
+        input[type=submit]{
+            border: 3px solid lightcoral;
+            background-color: palevioletred;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="myform">
+            <form method="post" name="form1" action="timetable.html" onsubmit="return f1()">
+                <b>First Name: </b>
+                <input type="text" name="a">
+                <br><br><br>
+                <b>Last Name: </b>
+                <input type="text" name="b">
+                <br><br><br>
+                <b>Email-ID: </b>
+                <input type="text" name="c">
+                <br><br><br>
+                <b>Phone No.</b>
+                <input type="text" name="ph">
+                <br><br><br>
+                <b>DOB</b>
+                <input id="birth_year" type="date" name="dob"/>
+                <br><br><br>
+                <b>Password: </b>
+                <input type="password" name="d">
+                <br><br><br>
+                <b>Confirm Password: </b>
+                <input type="password" name="e">
+                <br><br><br>
+                <input type="submit">
+                <br><br><br>
+            </form>
+        </div>
+    </center>
+    <script>
+        function f1() {
+            var s1 = document.form1.a.value;
+            var s2 = document.form1.b.value;
+            var s3 = document.form1.c.value;
+            var s4 = document.form1.d.value;
+            var s5 = document.form1.e.value;
+            var s6 = document.form1.ph.value;
+            var a1 = s3.indexOf('@');
+            var a1 = s3.indexOf('.');
+
+            var birth_year = new Date(document.getElementById("birth_year").value);
+            var diff_ms = Date.now() - birth_year.getTime();
+            var age_dt = new Date(diff_ms);
+            var age = Math.abs(age_dt.getUTCFullYear() - 1970);
+
+            if (s1 == "") {
+                alert("Enter First Name...");
+                return false;
+            }
+            if (s2 == "") {
+                alert("Enter Last Name...");
+                return false;
+            }
+            if (a1 == -1) {
+                alert("Invalid Email ID...");
+                return false;
+            }
+            if (s6.length < 10) {
+                alert("Enter Phone No..");
+                return false;
+            }
+            else if (s4.length < 5) {
+                alert("Enter password...");
+                return false;
+            }
+            if (s5 != s4) {
+                alert("Confirm valid password correctly...");
+                return false;
+            }
+            if (age < 22) {
+                alert("Age is Invalid, your age is less than 22");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>
